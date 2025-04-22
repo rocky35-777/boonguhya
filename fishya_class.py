@@ -38,19 +38,20 @@ sales = {
 
 def order_bread():
     while True : 
-        bread_type = input("메뉴를 선택해 주세요.(팥, 슈크림, 초코) 처음화면으로 가시려면 취소버튼을 눌러주세요.")
-        print(bread_type)
+        bread_type = input("메뉴를 선택해 주세요.(팥붕어빵, 슈크림붕어빵, 초코붕어빵) 처음화면으로 가시려면 취소버튼을 눌러주세요.")
         if bread_type == "취소" :
             print("처음화면으로 돌아갑니다.")
             break
-        # elif bread_type in ["팥", "슈크림", "초코"] :
-        #     print("수량을 선택해 주세요")
-        #     break
-        bread_count = int(input("수량을 입력하세요."))
-        if stock[bread_type] >= bread_count : 
-            print(f"{bread_count} 개가 선택되었습니다.")
-        elif bread_count > stock[bread_type] - bread_count :
-            print(f'{stock[bread_type]} 개만 주문할 수 있습니다.')
+        if bread_type in stock : 
+            bread_count = int(input("수량을 입력하세요."))
+            if stock[bread_type] >= bread_count :
+                stock[bread_type] -= bread_count
+                sales[bread_type] += bread_count
+                print(f"{bread_type} {bread_count} 개가 선택되었습니다.")
+            else :
+                print(f'{stock[bread_type]} 개만 주문 가능합니다.')
+        else :
+            print("다시 선택해 주세요.🙏🏻")
             
         # stock[bread_type] = stock[bread_type] -= bread_count # i = i + 1 / i += 1
         # 딕셔너리에 키값을 넣어서 실행하면? 벨류가 나옴, = 할당
