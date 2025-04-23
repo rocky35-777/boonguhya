@@ -36,6 +36,12 @@ sales = {
     "초코붕어빵" : 0
 }
 
+price = {
+    "팥붕어빵" : 1000,
+    "슈크림붕어빵" : 1500,
+    "초코붕어빵" : 2000
+}
+
 def order_bread():
     while True : 
         bread_type = input("메뉴를 선택해 주세요.(팥붕어빵, 슈크림붕어빵, 초코붕어빵) 처음화면으로 가시려면 취소버튼을 눌러주세요.")
@@ -78,12 +84,19 @@ def admin_mode():
         else :
             print("다시 선택해 주세요.🙏🏻")
 
-
+# 붕어빵 계산 기능
+def caculate_sales():
+    # total_sales = sum(sales[key] * price[key] for key in sales) #딕셔너리를 for문에 넣으면 하나씩 데이터를 가져오는데 이 데이터는 키값
+    total = 0 #토탈이 0이어서 매번 초기화가 될 것이다. 
+    for key in sales:
+        total += (sales[key] * price[key])
+    print(f"오늘의 총 매출은 {total}원 입니다.")
 # 붕어빵 main 화면
 while True:
     mode = input("원하는 모드를 선택하세요(주문, 관리자, 종료):") #주문
     # mode = "종료"
     if mode == "종료":
+        caculate_sales()
         print("시스템이 종료되었습니다.") # 가독성 좋음 
         break
     
